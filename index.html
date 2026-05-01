@@ -1,39 +1,41 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="25分集中と5分休憩を切り替える、軽量な集中タイマー。">
-  <title>Focus Timer | Quant Log</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FXトレーダー向け集中タイマー</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="app-shell">
-    <header class="app-header">
-      <p class="eyebrow">Focus Timer</p>
-      <h1>集中を区切る。</h1>
-      <p class="subtitle">25分集中、5分休憩。余計な機能を削ったブラウザタイマーです。</p>
+    <header>
+      <p class="eyebrow">FXトレーダー向けタイムボックス</p>
+      <h1>ディール前の集中タイマー</h1>
+      <p class="subtitle">25分集中／5分休憩を繰り返して、疲れをためずに相場と向き合う</p>
     </header>
 
-    <section class="timer-card" aria-label="集中タイマー">
+    <section class="timer-card">
       <div class="timer-state" data-mode>集中モード</div>
-      <div class="timer-face">
-        <span class="timer-display" data-minute>25</span>
-        <span class="timer-display seconds" data-seconds>:00</span>
-      </div>
+      <div class="timer-display" data-minute>25</div>
+      <div class="timer-display" data-seconds>:00</div>
       <div class="timer-controls">
-        <button id="start-pause" type="button">開始</button>
-        <button id="reset" type="button">リセット</button>
+        <button id="start-pause">開始</button>
+        <button id="reset">リセット</button>
       </div>
       <div class="timer-meta">
-        <span>Cycle <strong data-cycle>0</strong></span>
-        <span>Next <strong data-next>25:00</strong></span>
+        <span>サイクル: <strong data-cycle>0</strong></span>
+        <span>次の切り替え: <strong data-next>25:00</strong></span>
       </div>
     </section>
 
     <section class="notes">
       <h2>使い方</h2>
-      <p>開始すると25分の集中が始まり、終了後は自動で5分休憩へ切り替わります。中断と再開、リセットだけに絞っています。</p>
+      <ol>
+        <li>「開始」で25分にカウントダウンスタート。</li>
+        <li>集中が終わったら自動で5分休憩モードに移行。</li>
+        <li>「停止/再開」で中断、すぐに再開できます。</li>
+        <li>「リセット」で最初の集中25分に戻ります。</li>
+      </ol>
     </section>
   </main>
   <script src="timer.js"></script>
