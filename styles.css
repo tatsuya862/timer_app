@@ -1,17 +1,19 @@
 :root {
   color-scheme: dark;
   --bg: #050505;
-  --surface: #0c0c0c;
+  --surface: #080808;
   --panel: #111;
-  --line: rgba(183, 143, 69, 0.36);
-  --line-soft: rgba(240, 236, 227, 0.12);
-  --gold: #d1b06b;
-  --text: #f0ece3;
-  --muted: rgba(240, 236, 227, 0.66);
+  --line: rgba(184, 134, 24, 0.42);
+  --line-soft: rgba(242, 242, 240, 0.11);
+  --gold: #c99a2e;
+  --gold-deep: #6f4d0d;
+  --text: #f2f2f0;
+  --muted: rgba(242, 242, 240, 0.66);
   font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.76;
+  font-weight: 300;
   text-rendering: optimizeLegibility;
 }
 
@@ -27,7 +29,7 @@ body {
   padding: clamp(1rem, 4vw, 2rem);
   text-align: center;
   background:
-    linear-gradient(180deg, rgba(183, 143, 69, 0.1), transparent 300px),
+    linear-gradient(180deg, rgba(184, 134, 24, 0.1), transparent 260px),
     var(--bg);
 }
 
@@ -48,16 +50,17 @@ button {
   width: 100%;
   background: rgba(12, 12, 12, 0.95);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 2px;
   padding: clamp(1.2rem, 4vw, 1.7rem);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.36);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
 }
 
 .eyebrow {
   margin: 0 0 0.45rem;
   color: var(--gold);
   font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
+  font-weight: 300;
   text-transform: uppercase;
 }
 
@@ -71,7 +74,7 @@ h1 {
   margin-bottom: 0.35rem;
   font-size: clamp(2rem, 9vw, 3.4rem);
   line-height: 1.15;
-  font-weight: 600;
+  font-weight: 400;
   text-wrap: balance;
 }
 
@@ -119,19 +122,19 @@ button {
   min-height: 44px;
   min-width: 118px;
   border: 1px solid var(--gold);
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 0.65rem 0.9rem;
   color: #090806;
   background: var(--gold);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2;
   cursor: pointer;
 }
 
 button:hover {
-  border-color: #c39b4f;
+  border-color: #b88618;
   color: #090806;
-  background: #c39b4f;
+  background: #b88618;
 }
 
 #start-pause {
@@ -158,6 +161,7 @@ button:hover {
   color: var(--gold);
   font-size: 0.95rem;
   letter-spacing: 0.06em;
+  font-weight: 300;
   text-transform: uppercase;
 }
 
