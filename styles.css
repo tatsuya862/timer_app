@@ -1,118 +1,162 @@
-﻿:root {
+:root {
   color-scheme: dark;
-  font-family: "Noto Sans JP", "Segoe UI", sans-serif;
-  background-color: #0f172a;
-  color: #e2e8f0;
+  --bg: #050505;
+  --surface: #0c0c0c;
+  --panel: #111;
+  --line: rgba(183, 143, 69, 0.36);
+  --line-soft: rgba(240, 236, 227, 0.12);
+  --gold: #d1b06b;
+  --text: #f0ece3;
+  --muted: rgba(240, 236, 227, 0.66);
+  font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at top, #1d4ed8, #0b1228 60%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2rem);
+  background:
+    linear-gradient(180deg, rgba(183, 143, 69, 0.1), transparent 300px),
+    var(--bg);
 }
-.app-shell {
-  width: min(460px, 90vw);
-  background: rgba(15, 23, 42, 0.92);
-  border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
-}
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  font-size: 0.7rem;
-  margin: 0 0 0.5rem;
-  color: #93c5fd;
-}
-h1 {
-  margin: 0;
-  font-size: 2rem;
-  line-height: 1.2;
-}
-.subtitle {
-  margin: 0.25rem 0 1.5rem;
-  color: #94a3b8;
-}
-.timer-card {
-  background: rgba(15, 23, 42, 0.8);
-  border-radius: 18px;
-  padding: 1.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.4);
-}
-.timer-state {
-  text-align: center;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: #38bdf8;
-}
-.timer-display {
-  display: inline-block;
-  font-size: 4rem;
-  font-weight: 600;
-  text-align: center;
-}
-.timer-controls {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  margin: 1rem 0;
-}
+
 button {
-  flex: 1;
-  border: none;
-  border-radius: 999px;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  font: inherit;
+}
+
+.app-shell {
+  width: min(480px, 100%);
+  display: grid;
+  gap: 1rem;
+}
+
+.app-header,
+.timer-card,
+.notes {
+  background: rgba(12, 12, 12, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(1.2rem, 4vw, 1.7rem);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.36);
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0.35rem;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.subtitle,
+.notes p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.timer-card {
+  text-align: center;
+}
+
+.timer-state {
+  color: var(--gold);
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+}
+
+.timer-face {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0.6rem 0 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-display {
+  font-size: clamp(4.2rem, 18vw, 6.2rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.timer-display.seconds {
+  color: var(--muted);
+}
+
+.timer-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+button {
+  min-height: 44px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  padding: 0.65rem 0.9rem;
+  color: var(--text);
+  background: transparent;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
 }
+
 button:hover {
-  transform: translateY(-1px);
+  border-color: var(--gold);
+  color: var(--gold);
 }
+
 #start-pause {
-  background: linear-gradient(135deg, #22d3ee, #2563eb);
-  color: #0f172a;
+  border-color: var(--gold);
+  color: #090806;
+  background: var(--gold);
 }
-#reset {
-  background: rgba(248, 250, 252, 0.08);
-  color: #f8fafc;
-}
+
 .timer-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  color: #cbd5f5;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
-.notes {
-  margin-top: 2rem;
-  color: #e2e8f0;
+
+.timer-meta strong {
+  color: var(--text);
 }
+
 .notes h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
+  margin-bottom: 0.45rem;
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #a5b4fc;
 }
-.notes ol {
-  margin: 0;
-  padding-left: 1rem;
-}
-.notes li + li {
-  margin-top: 0.5rem;
-}
-@media (max-width: 480px) {
-  body {
-    padding: 1rem;
-  }
-  .app-shell {
-    padding: 2rem 1.5rem;
+
+@media (max-width: 420px) {
+  .timer-controls,
+  .timer-meta {
+    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 }
