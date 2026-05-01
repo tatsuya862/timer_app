@@ -103,6 +103,7 @@ h1 {
 }
 
 .timer-display {
+  display: inline-block;
   font-size: clamp(4.2rem, 18vw, 6.2rem);
   font-weight: 600;
   line-height: 1;
