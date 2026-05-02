@@ -1,18 +1,17 @@
 :root {
   color-scheme: dark;
-  --bg: #050505;
-  --surface: #080808;
-  --panel: #111;
-  --line: rgba(184, 134, 24, 0.42);
-  --line-soft: rgba(242, 242, 240, 0.11);
-  --gold: #c99a2e;
-  --gold-deep: #6f4d0d;
-  --text: #f2f2f0;
-  --muted: rgba(242, 242, 240, 0.66);
-  font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, -apple-system, sans-serif;
+  --bg: #030404;
+  --line: rgba(184, 134, 24, 0.44);
+  --line-soft: rgba(225, 210, 180, 0.18);
+  --gold: #d1a13a;
+  --text: #f4f0e9;
+  --muted: rgba(244, 240, 233, 0.66);
+  --serif: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif;
+  --sans: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+  font-family: var(--serif);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.76;
+  line-height: 1.75;
   font-weight: 300;
   text-rendering: optimizeLegibility;
 }
@@ -24,44 +23,96 @@
 body {
   min-height: 100vh;
   margin: 0;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 4vw, 2rem);
-  text-align: center;
   background:
-    linear-gradient(180deg, rgba(184, 134, 24, 0.1), transparent 260px),
-    var(--bg);
+    radial-gradient(circle at 28% 30%, rgba(255, 255, 255, 0.055), transparent 18rem),
+    radial-gradient(circle at 90% 20%, rgba(201, 154, 46, 0.05), transparent 24rem),
+    linear-gradient(115deg, #020303 0%, #050707 46%, #0a0d0d 100%);
+  color: var(--text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 96px 96px;
+  pointer-events: none;
 }
 
 button {
   font: inherit;
 }
 
-.app-shell {
-  width: min(480px, 100%);
-  display: grid;
-  gap: 1rem;
-  justify-items: center;
+.site-header {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.25rem, 4vw, 3.25rem);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(3, 4, 4, 0.88);
 }
 
-.app-header,
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand-main {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  letter-spacing: 0.16em;
+}
+
+.brand-sub,
+.app-kicker {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.app-kicker {
+  color: var(--gold);
+}
+
+.app-shell {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  padding: clamp(2rem, 7vw, 5rem) clamp(1rem, 4vw, 2rem);
+}
+
+.hero,
 .timer-card,
 .notes {
   width: 100%;
-  background: rgba(12, 12, 12, 0.95);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  padding: clamp(1.2rem, 4vw, 1.7rem);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--line-soft);
+  border-radius: 0;
+  background: rgba(7, 8, 8, 0.76);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+}
+
+.hero {
+  padding: clamp(1.4rem, 4vw, 2.3rem);
+  border-color: var(--line);
+}
+
+.timer-card,
+.notes {
+  padding: clamp(1.3rem, 4vw, 2rem);
 }
 
 .eyebrow {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.55rem;
   color: var(--gold);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  font-weight: 300;
-  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
 }
 
 h1,
@@ -71,17 +122,23 @@ p {
 }
 
 h1 {
-  margin-bottom: 0.35rem;
-  font-size: clamp(2rem, 9vw, 3.4rem);
-  line-height: 1.15;
-  font-weight: 400;
+  margin-bottom: 0.65rem;
+  font-size: clamp(2.3rem, 8vw, 4.6rem);
+  line-height: 1.22;
+  font-weight: 300;
+  letter-spacing: 0.04em;
   text-wrap: balance;
 }
 
 .subtitle,
-.notes p {
-  margin-bottom: 0;
+.notes li {
   color: var(--muted);
+}
+
+.subtitle {
+  margin-bottom: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
 }
 
 .timer-card {
@@ -90,23 +147,26 @@ h1 {
 
 .timer-state {
   color: var(--gold);
-  font-size: 0.92rem;
-  letter-spacing: 0.08em;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .timer-face {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  margin: 0.6rem 0 1.1rem;
+  margin: 0.8rem 0 1.5rem;
   font-variant-numeric: tabular-nums;
 }
 
 .timer-display {
   display: inline-block;
-  font-size: clamp(4.2rem, 18vw, 6.2rem);
-  font-weight: 600;
+  font-size: clamp(5rem, 18vw, 8.5rem);
+  font-weight: 300;
   line-height: 1;
+  letter-spacing: 0.02em;
 }
 
 .timer-display.seconds {
@@ -116,40 +176,40 @@ h1 {
 .timer-controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 button {
-  min-height: 44px;
+  min-height: 58px;
   min-width: 118px;
-  border: 1px solid var(--gold);
-  border-radius: 2px;
-  padding: 0.65rem 0.9rem;
-  color: #090806;
-  background: var(--gold);
-  font-weight: 400;
-  line-height: 1.2;
+  border: 1px solid var(--line-soft);
+  border-radius: 0;
+  padding: 0.7rem 1.1rem;
+  color: var(--text);
+  background: transparent;
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
   cursor: pointer;
 }
 
-button:hover {
-  border-color: #b88618;
-  color: #090806;
-  background: #b88618;
-}
-
+button:hover,
 #start-pause {
   border-color: var(--gold);
-  color: #090806;
+  color: var(--gold);
+}
+
+#start-pause:hover {
+  color: #050505;
   background: var(--gold);
 }
 
 .timer-meta {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 1.5rem;
+  margin-top: 1.1rem;
   color: var(--muted);
+  font-family: var(--sans);
   font-size: 0.88rem;
 }
 
@@ -160,16 +220,31 @@ button:hover {
 .notes h2 {
   margin-bottom: 0.45rem;
   color: var(--gold);
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
+  font-size: 1.05rem;
   font-weight: 300;
-  text-transform: uppercase;
 }
 
-@media (max-width: 420px) {
-  .timer-controls,
+.notes ol {
+  margin-bottom: 0;
+  padding-left: 1.4rem;
+  text-align: left;
+}
+
+@media (max-width: 560px) {
+  .site-header,
+  .brand,
   .timer-meta {
-    grid-template-columns: 1fr;
+    align-items: flex-start;
     flex-direction: column;
+  }
+
+  .site-header {
+    justify-content: center;
+    gap: 0.35rem;
+    padding-block: 1rem;
+  }
+
+  .timer-controls {
+    grid-template-columns: 1fr;
   }
 }

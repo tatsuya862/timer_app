@@ -4,20 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FXトレーダー向け集中タイマー</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=serif-prototype-01" />
 </head>
 <body>
+  <header class="site-header">
+    <a class="brand" href="https://tatsuya862.github.io/japanese-quant-log/">
+      <span class="brand-main">QUANT LOG</span>
+      <span class="brand-sub">by Tatsuya</span>
+    </a>
+    <span class="app-kicker">Prototype 02</span>
+  </header>
+
   <main class="app-shell">
-    <header>
-      <p class="eyebrow">FXトレーダー向けタイムボックス</p>
+    <section class="hero">
+      <p class="eyebrow">Timer</p>
       <h1>ディール前の集中タイマー</h1>
       <p class="subtitle">25分集中／5分休憩を繰り返して、疲れをためずに相場と向き合う</p>
-    </header>
+    </section>
 
     <section class="timer-card">
       <div class="timer-state" data-mode>集中モード</div>
-      <div class="timer-display" data-minute>25</div>
-      <div class="timer-display" data-seconds>:00</div>
+      <div class="timer-face">
+        <div class="timer-display" data-minute>25</div>
+        <div class="timer-display seconds" data-seconds>:00</div>
+      </div>
       <div class="timer-controls">
         <button id="start-pause">開始</button>
         <button id="reset">リセット</button>
