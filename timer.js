@@ -14,13 +14,13 @@ const startPauseBtn = document.getElementById("start-pause");
 const resetBtn = document.getElementById("reset");
 
 const modeLabels = {
-  focus: "集中モード",
-  break: "休憩モード",
+  focus: "フォーカス",
+  break: "ブレイク",
 };
 
 const nextLabels = {
-  focus: `休憩 ${formatTime(breakDuration)}`,
-  break: `集中 ${formatTime(focusDuration)}`,
+  focus: `ブレイク：${formatTime(breakDuration)}`,
+  break: `フォーカス：${formatTime(focusDuration)}`,
 };
 
 startPauseBtn.addEventListener("click", () => {
@@ -40,7 +40,7 @@ resetBtn.addEventListener("click", () => {
   cycleCount = 0;
   updateNextLabel();
   updateDisplay();
-  startPauseBtn.textContent = "開始";
+  startPauseBtn.textContent = "スタート";
 });
 
 function startTimer() {

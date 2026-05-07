@@ -169,10 +169,6 @@ h1 {
   letter-spacing: 0.02em;
 }
 
-.timer-display.seconds {
-  color: var(--muted);
-}
-
 .timer-controls {
   display: grid;
   grid-template-columns: 1fr 1fr;

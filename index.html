@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FXトレーダー向け集中タイマー</title>
+  <title>集中タイマー | Quant Log Timer</title>
+  <meta name="description" content="25分集中と5分休憩を直感操作で管理する、トレードや作業向けのシンプルな集中タイマー。">
   <link rel="stylesheet" href="styles.css?v=serif-prototype-01" />
 </head>
 <body>
@@ -18,35 +19,37 @@
   <main class="app-shell">
     <section class="hero">
       <p class="eyebrow">Timer</p>
-      <h1>ディール前の集中タイマー</h1>
-      <p class="subtitle">25分集中／5分休憩を繰り返して、疲れをためずに相場と向き合う</p>
+      <h1>フォーカスタイマー</h1>
+      <p class="subtitle">フォーカス 25min / ブレイク 5min</p>
     </section>
 
     <section class="timer-card">
-      <div class="timer-state" data-mode>集中モード</div>
+      <div class="timer-state" data-mode>フォーカス</div>
       <div class="timer-face">
         <div class="timer-display" data-minute>25</div>
         <div class="timer-display seconds" data-seconds>:00</div>
       </div>
       <div class="timer-controls">
-        <button id="start-pause">開始</button>
+        <button id="start-pause">スタート</button>
         <button id="reset">リセット</button>
       </div>
       <div class="timer-meta">
         <span>サイクル: <strong data-cycle>0</strong></span>
-        <span>次の切り替え: <strong data-next>25:00</strong></span>
+        <span>次セッション: <strong data-next>ブレイク：05:00</strong></span>
       </div>
     </section>
 
+    <!--
     <section class="notes">
       <h2>使い方</h2>
       <ol>
-        <li>「開始」で25分にカウントダウンスタート。</li>
-        <li>集中が終わったら自動で5分休憩モードに移行。</li>
-        <li>「停止/再開」で中断、すぐに再開できます。</li>
-        <li>「リセット」で最初の集中25分に戻ります。</li>
+        <li>「開始」で25分集中。</li>
+        <li>終了後は5分休憩へ自動切替。</li>
+        <li>「停止/再開」で中断と再開。</li>
+        <li>「リセット」で最初に戻ります。</li>
       </ol>
     </section>
+    -->
   </main>
   <script src="timer.js"></script>
 </body>
