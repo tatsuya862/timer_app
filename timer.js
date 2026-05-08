@@ -4,6 +4,7 @@ let remainingSeconds = focusDuration;
 let currentMode = "focus"; // focus or break
 let cycleCount = 0;
 let timerId = null;
+let audioContext = null;
 
 const minuteEl = document.querySelector("[data-minute]");
 const secondsEl = document.querySelector("[data-seconds]");
@@ -28,6 +29,7 @@ startPauseBtn.addEventListener("click", () => {
     pauseTimer();
     startPauseBtn.textContent = "再開";
   } else {
+    ensureAudioContext();
     startTimer();
     startPauseBtn.textContent = "停止";
   }
@@ -71,7 +73,9 @@ function handleCompletion() {
   if (currentMode === "focus") {
     cycleCount += 1;
   }
-  switchMode(currentMode === "focus" ? "break" : "focus");
+  const nextMode = currentMode === "focus" ? "break" : "focus";
+  switchMode(nextMode);
+  playSessionSound(nextMode);
 }
 
 function switchMode(nextMode) {
@@ -99,6 +103,46 @@ function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function ensureAudioContext() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) {
+    return null;
+  }
+  if (!audioContext) {
+    audioContext = new AudioContext();
+  }
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+  return audioContext;
+}
+
+function playSessionSound(nextMode) {
+  const context = ensureAudioContext();
+  if (!context) {
+    return;
+  }
+  const frequencies = nextMode === "focus" ? [880, 1175] : [523, 392];
+  const now = context.currentTime;
+
+  frequencies.forEach((frequency, index) => {
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    const startAt = now + index * 0.16;
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(frequency, startAt);
+    gain.gain.setValueAtTime(0, startAt);
+    gain.gain.linearRampToValueAtTime(0.18, startAt + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.18);
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start(startAt);
+    oscillator.stop(startAt + 0.2);
+  });
 }
 
 updateDisplay();
